@@ -1,6 +1,6 @@
-use std::env::{args,var};
-use std::fs::{create_dir,File};
-use std::io::{BufRead,BufReader,ErrorKind,Write};
+use std::env::{args, var};
+use std::fs::{create_dir, File};
+use std::io::{BufRead, BufReader, ErrorKind, Write};
 use std::path::{Path, PathBuf};
 
 use std::env::consts;
