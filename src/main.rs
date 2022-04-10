@@ -181,8 +181,15 @@ fn list_todo(file: PathBuf) -> std::io::Result<()> {
 
     let reader = BufReader::new(f);
 
+    println!("Todo List");
+    println!("---------");
+
     for (ind, todo) in reader.lines().enumerate() {
-        println!("{}. {}", ind + 1, todo.unwrap());
+        if todo.as_ref().unwrap().contains("✓") {
+            println!("\x1b[32m{}. {}\x1b[0m", ind + 1, todo.unwrap());
+        } else {
+            println!("{}. {}", ind + 1, todo.unwrap());
+        }
     }
     Ok(())
 }
@@ -211,6 +218,11 @@ fn load_file(file: PathBuf) -> File {
 }
 
 fn usage() -> std::io::Result<()> {
-    println!("Usage!");
+    println!("usage: todo cmd args");
+    println!("add: todo add <todo>");
+    println!("update: todo update <todo num> <todo>");
+    println!("del: todo del <todo num>");
+    println!("done: todo done <todo num>");
+    println!("list: todo list");
     Ok(())
 }
