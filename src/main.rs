@@ -3,8 +3,6 @@ use std::fs::{create_dir, File};
 use std::io::{BufRead, BufReader, ErrorKind, Write};
 use std::path::{Path, PathBuf};
 
-use std::env::consts;
-
 fn main() {
     let argv: Vec<String> = args().collect();
     if argv.len() == 1 {
@@ -12,11 +10,7 @@ fn main() {
         return;
     }
 
-    let mut home = var("HOME");
-    if consts::OS == "windows" {
-        home = var("USERPROFILE");
-    }
-
+    let home = var("HOME");
     let todo_dir = Path::new(&home.unwrap()).join(".todo");
     let todo_file = Path::new(&todo_dir).join("todo");
 
